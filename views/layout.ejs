@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+       <link rel="stylesheet" href="/css/layout.css">
+       <%- style %>
+    </head>
+
+    <body>
+         <%- include('_header'); -%>              <!-- Partial means to partial or half of code write in someother file -->
+        
+         <%- body %>                            <!-- body is predefine from the express-ejs-layouts liberey
+                                                       and this body contains the variable part -->
+
+        <%- include('_footer'); -%>
+
+        <%- script %>
+      
+    </body>
+    <script src="/js/index.js"></script>
+</html>
