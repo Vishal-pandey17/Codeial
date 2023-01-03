@@ -10,9 +10,10 @@
   "keywords": [
     "social"
   ],
-  "author": "vishal pandey",
+  "author": "CodingNinjas",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
   }
 }
