@@ -15,10 +15,9 @@ const userSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    timestamps: true    // This will create the above schema and update that.
+    timestamps: true    // This will create the above schema and update that into the data base.
 });
 
 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;
