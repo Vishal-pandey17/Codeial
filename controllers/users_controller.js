@@ -1,9 +1,11 @@
 const User = require('../models/user');
 module.exports.profile = function(req, res){
+   User.findById(req.params.id, function(err, user){
     return res.render('user_profile', {
         title: 'user Profile',
-        user: req.user
-    });
+        profile_user: user
+       });
+   });
     // restricted to access to my profile
     /*if(req.cookies.user_id){
         User.findById(req.cookies.user_id, function(err, user)
