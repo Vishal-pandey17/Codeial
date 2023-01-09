@@ -4,6 +4,7 @@
   "description": "My all social media web application",
   "main": "index.js",
   "scripts": {
+    "sass": "sass --watch assest/scss:assest/css",
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +22,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.8.2",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sass": "^1.57.1"
   }
 }
