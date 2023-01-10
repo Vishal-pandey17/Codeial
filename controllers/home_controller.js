@@ -3,7 +3,7 @@ const User = require('../models/user');
 const { populate } = require('../models/user');
 
 // A group of action function in one file is called controller
-module.exports.home = function(req, res){
+module.exports.home = async function(req, res){
     // console.log(req.cookies);
     // res.cookie('user_id', 25);                // Update that presented cookie
 
@@ -16,7 +16,7 @@ module.exports.home = function(req, res){
     })*/
 
     // populate the user for each post
-    Post.find({})                               // use to fetch out which all the data of user who has post this
+    /*Post.find({})                               // use to fetch out which all the data of user who has post this
         .populate('user')
         .populate({
             path: 'comments',
@@ -32,7 +32,32 @@ module.exports.home = function(req, res){
                 all_users: users  
             });
          });
-    })
+    })*/
+
+    // using async and await 
+    try{
+        let posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+        });
+
+        let users = await User.find({});
+
+        return res.render('home', {
+            title: "Codeial | Home",
+            posts: posts,
+            all_users: users
+        });
+        
+
+    }catch(err){
+        console.log('Error in home_controller', err);
+        return;
+    }
     
 }
 

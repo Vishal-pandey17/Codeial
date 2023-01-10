@@ -106,16 +106,17 @@ module.exports.createSession = function(req,res)
             return res.redirect('back');
         }
     }); */
-
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req,res){
-   // this function is given to by request by using passport.js
+   // this function is given to by request by using passport.js 
    req.logout(function(err) {
     if (err) {
       return next(err);
     }
+    req.flash('success', 'You have logged out');
     res.redirect("/");
   });
 }
