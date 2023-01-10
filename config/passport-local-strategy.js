@@ -6,13 +6,11 @@ const LocalStrategy = require('passport-local').Strategy;
 
 // authentication using passport 
 passport.use(new LocalStrategy({
-
      usernameField: 'email',
      passReqToCallback: true
 },
 function(req, email, password, done){
    // find a user  and establish the identity
-   
    User.findOne({email: email}, function(err, user){
       if(err){req.flash('error', err); return done(err);}
 
@@ -29,7 +27,7 @@ function(req, email, password, done){
 
 // serializing the user is decide which key is to be kept in the cookie
 passport.serializeUser(function(user,done){
-    done(null, user.id);
+        done(null, user.id);
 });
 
 // deserializing the user from the key in the cookie
