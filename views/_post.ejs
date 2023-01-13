@@ -13,7 +13,7 @@
     </p>
     <div class="post-comments">
        <% if(locals.user) {%>
-          <form action="comments/create" method="post" enctype="multipart/form-data">
+          <form action="comments/create" method="post" id="new-comment-form" enctype="multipart/form-data">
             <input type="text" name="content" placeholder="Type here to add comment.." required>
             <!-- The id of the comment which post needs to be added -->
             <input type="hidden" name="post" value="<%= post._id %>">
