@@ -35,6 +35,7 @@ module.exports.home = async function(req, res){
     })*/
 
     // using async and await 
+    
     try{
         let posts = await Post.find({})
         .populate('user')
@@ -46,7 +47,7 @@ module.exports.home = async function(req, res){
         });
 
         let users = await User.find({});
-
+        
         return res.render('home', {
             title: "Codeial | Home",
             posts: posts,

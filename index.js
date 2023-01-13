@@ -15,6 +15,8 @@ const customMware = require('./config/middleware');
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static('./assest'));
+// make the uploads part avaliable to the browser 
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
 // extract the style and script from the sub page into the head tag of the layout..with help of express-ejs-layouts
 app.set('layout extractStyles', true);

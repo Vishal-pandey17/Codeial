@@ -19,7 +19,7 @@ module.exports.create = async function(req,res){
          content: req.body.content,
          user: req.user._id
       });
-
+    
       if(req.xhr){
          return res.status(200).json({
             data: {
@@ -71,7 +71,6 @@ module.exports.destroy = async function(req,res)
        // .id means converting the object id into String by mongoose
        if(post.user == req.user.id){
            post.remove();
-
            Comment.deleteMany({post: req.params.id}, function(err){
                return res.redirect('back');
            });
@@ -81,4 +80,3 @@ module.exports.destroy = async function(req,res)
    });*/
    
 }
-
