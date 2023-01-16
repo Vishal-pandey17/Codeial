@@ -7,7 +7,7 @@ const User = require('../models/user');
 passport.use(new googleStrategy({
      clientID: "223351384140-ccrou2ussq25pv9rjn5cc5gi27cnd37s.apps.googleusercontent.com",
      clientSecret: "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",
-     callbackURL: "https://localhost:8000/users/auth/google/callback",
+     callbackURL: "http://localhost:8000/users/auth/google/callback",
 
 }, function(accessToken, refreshToken, profile, done){/* Access token take generated token by google, and refresh will 
                                                          regenerate the token when access token expired.*/
@@ -28,7 +28,7 @@ passport.use(new googleStrategy({
             User.create({
                 name: profile.displayName,
                 email: profile.emails[0].value,
-                password: crypto.randomBytes(20).toString('hex');
+                password: crypto.randomBytes(20).toString('hex')
             }, function(err, user){
                 if(err){
                     console.log("Error in creating user google strategy-passport", err);
@@ -42,3 +42,4 @@ passport.use(new googleStrategy({
 }));
 
 module.exports = passport;
+
