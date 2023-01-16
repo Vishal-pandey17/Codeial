@@ -1,7 +1,7 @@
 
 const User = require('../../../models/user');
-const jwt = require('jsonwebtoken');                  // Used to generate the encrypt token
- 
+const jwt = require('jsonwebtoken');              // Use to generate the encrypt token
+
 
 module.exports.createSession = async function(req, res){
 
