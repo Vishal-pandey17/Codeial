@@ -16,11 +16,9 @@ module.exports.create = async function(req, res){
             post.comments.push(comment);
             post.save();
             
-            comment = await comment.populate('user', 'name email').execPopulate();
+            comment = await comment.populate([{path: 'user', select: 'name'}, {path: 'user', select: 'email'}])
             commentsMailer.newComment(comment);
             if (req.xhr){
-                
-    
                 return res.status(200).json({
                     data: {
                         comment: comment
@@ -28,8 +26,6 @@ module.exports.create = async function(req, res){
                     message: "Post created!"
                 });
             }
-
-
             req.flash('success', 'Comment published!');
 
             res.redirect('/');

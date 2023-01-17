@@ -4,13 +4,13 @@ const path = require('path')
 
 
 let transporter = nodemailer.createTransport({
-    service: 'vishalpandey86681@gmail.com',
+    service: 'gmail',
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-        user: 'alchemy.cn18',
-        pass: 'codingninjas'
+        user: 'vishalpandey86681@gmail.com',
+        pass: 'lmehbsjexkvxtzzm'
     }
 });
 
