@@ -13,8 +13,6 @@ let transporter = nodemailer.createTransport({
         pass: 'lmehbsjexkvxtzzm'
     }
 });
-
-
 let renderTemplate = (data, relativePath) => {
     let mailHTML;
     ejs.renderFile(
