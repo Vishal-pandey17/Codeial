@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 const { populate } = require('../models/user');
+const { post } = require('../routes');
 
 // A group of action function in one file is called controller
 module.exports.home = async function(req, res){
@@ -37,6 +38,7 @@ module.exports.home = async function(req, res){
     // using async and await 
     
     try{
+        // CHANGE :: populate the likes of each post and comment
         let posts = await Post.find({})
         .sort('-createdAt')
         .populate('user')
@@ -44,25 +46,27 @@ module.exports.home = async function(req, res){
             path: 'comments',
             populate: {
                 path: 'user'
+            },
+            populate: {
+                path: 'likes'
             }
-        });
+        }).populate('likes');
 
+    
         let users = await User.find({});
-        
+
         return res.render('home', {
             title: "Codeial | Home",
-            posts: posts,
+            posts:  posts,
             all_users: users
         });
-        
 
     }catch(err){
-        console.log('Error in home_controller', err);
+        console.log('Error', err);
         return;
     }
-    
+   
 }
-
 // module.exports.actionName = function(req, res){}
 
 

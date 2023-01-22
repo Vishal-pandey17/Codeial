@@ -1,6 +1,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const Like = require('../models/like');
 module.exports.create = async function(req, res){
 
     try{
@@ -19,6 +20,7 @@ module.exports.create = async function(req, res){
             comment = await comment.populate([{path: 'user', select: 'name'}, {path: 'user', select: 'email'}])
             commentsMailer.newComment(comment);
             if (req.xhr){
+                comment = await comment.populate('user', 'name');
                 return res.status(200).json({
                     data: {
                         comment: comment
@@ -50,6 +52,8 @@ module.exports.destroy = async function(req, res){
             comment.remove();
 
             let post = Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}});
+
+            await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
 
             // send the comment id which was deleted back to the views
             if (req.xhr){

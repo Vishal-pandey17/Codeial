@@ -1,5 +1,5 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');  // use in manual aurthendication to set cookie
+const cookieParser = require('cookie-parser');  // use in manual aurthendication toread and write in set cookie
 const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
@@ -10,7 +10,7 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session); // use to store our session cookie in mongodb.
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
@@ -31,9 +31,6 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // mongo store the session cookie in the db
-
-
-
 //Middleware is used to encrypt our session cookie
 console.log('Hello session')
 app.use(session({
@@ -47,7 +44,7 @@ app.use(session({
     cookie: {
         maxAge: (1000*60*100)   // milliseconds
     },
-    store: new MongoStore(
+    store: new MongoStore(                    // use to store the cookie in DB
         {
             mongooseConnection: db,
             autoRemove: 'disable'

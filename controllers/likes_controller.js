@@ -37,22 +37,21 @@ module.exports.toggleLike = async function(req, res){
             
         });
 
-        likeable.likes.push(like._id);
+        likeable.likes.push(newLike._id);
         likeable.save();
     }
 
-    return res.json({
-        message: 'Request Successfull!',
-
-    })
+    return res.status(200).json({
+        messagge: 'Request Successfull',
+        data:{
+            deleted:deleted
+        }
+    });
        
    }catch(err){
       console.log(err);
       return res.json(500, {
-        message: 'Internal Server Error!!',
-        data: {
-            deleted: deleted
-        }
+        messagge: 'Internal server error'
       });
    }
 }
