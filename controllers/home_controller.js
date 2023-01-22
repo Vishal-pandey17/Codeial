@@ -36,7 +36,7 @@ module.exports.home = async function(req, res){
     })*/
 
     // using async and await 
-    
+
     try{
         // CHANGE :: populate the likes of each post and comment
         let posts = await Post.find({})
@@ -51,7 +51,7 @@ module.exports.home = async function(req, res){
                 path: 'likes'
             }
         }).populate('likes');
-
+// console.log("post populate", posts.comments[0].user)
     
         let users = await User.find({});
 
