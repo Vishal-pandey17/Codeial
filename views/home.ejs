@@ -46,4 +46,8 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
 <script src="/js/chat_engine.js"></script>
-
+<% if(locals.user){ %>
+<script>
+    new chatEngine('user-chat-box', '<%= locals.user._id %>')
+</script>
+<% } %>
