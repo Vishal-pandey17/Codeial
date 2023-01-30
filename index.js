@@ -1,4 +1,5 @@
 const express = require('express');
+
 const cookieParser = require('cookie-parser');  // use in manual aurthendication toread and write in set cookie
 const app = express();
 const port = 8000;
@@ -16,15 +17,18 @@ const MongoStore = require('connect-mongo')(session); // use to store our sessio
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
+
 // setup the chatserver to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSocket = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('Chat server is listening on port 5000');
 
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static('./assest'));
+// app.use(express.static(env.asset_path));
 // make the uploads part avaliable to the browser 
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
